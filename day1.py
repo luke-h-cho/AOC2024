@@ -69,28 +69,36 @@ from inputs import day1_input
 
 # part 1
 def find_difference_in_distance(list1: list[int], list2: list[int]) -> int :
+  # sort the lists
   list1.sort()
   list2.sort()
+  # declare the var to return
   total_distance = 0
+  # iterate thru the lists (both lists should have same length)
   for i in range(len(list1)):
+    # add the abs difference between two list at the same index
     total_distance += abs(list1[i] - list2[i])
-
+  # return the accumulated difference in distance
   return total_distance
 
 # print(find_difference_in_distance(*process_string_input_to_list(day1_input)))
 
 # part 2
 def find_score(list1: list[int], list2: list[int]) -> int :
+  # create a dictionary (map) to trace the number (as a key) and the number of its occurences (as a value)
   list2_dict = dict()
+  # iterate thru the list2 to create the dictionary
   for num in list2:
     list2_dict[num] = (list2_dict[num] if num in list2_dict else 0) + 1
-
+  # declare var to return
   total_score = 0
-
+  # iterate thru the list 1
   for num in list1:
+    # find the number in list1 from the list2 dictionary
     if num in list2_dict:
+      # add the score, which is the number x the number of its occurences from list 2 dictionary
       total_score += num * list2_dict[num]
-  
+  # return the accumulated score
   return total_score
 
 # print(find_score(*process_string_input_to_list(day1_input)))
